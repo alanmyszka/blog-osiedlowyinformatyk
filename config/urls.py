@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from decouple import config
-from blog.views import posts
+from blog.views import posts, post_content
 
 ADMIN_URL = config("DJANGO_ADMIN_URL", default="admin/")
 
 urlpatterns = [
     path(ADMIN_URL, admin.site.urls),
-    path('', posts)
+    path('', posts),
+    path('post/<slug:slug>/', post_content, name='post_content'),
 ]

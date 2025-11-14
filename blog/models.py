@@ -8,8 +8,7 @@ class Tag(models.Model):
         return self.name
 
 class Post(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField(max_length=1000, null=True)
+    title = models.CharField(max_length=120)
     slug = models.SlugField()
     content = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
@@ -21,7 +20,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
-    def excerpt(self, chars=100):
+    def excerpt(self, chars=150):
         if len(self.content) > chars:
             return self.content[:chars].rstrip() + "…"
         return self.content
