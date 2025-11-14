@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/dist/style.css' %}">
+    <link rel="stylesheet" href="{% static '/dist/custom.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <title>{% block title %} osiedlowy_informatyk@blog:~$ {% endblock %}</title>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+    <header class="sticky top-0 select-none">
+
+        <nav class="flex flex-col justify-center bg-white shadow-xs items-center h-30 gap-4">
+
+            <div class="roboto-mono text-lg md:text-2xl font-extrabold ">
+                <span class="text-indigo-600">
+                    osiedlowy_informatyk<span class="text-gray-800">@blog:~$</span></span><span
+                    class="text-gray-800 blink text-3xl font-light">|</span>
+            </div>
+
+            <div class="roboto-mono flex md:text-lg text-sm gap-10 font-extrabold text-gray-700">
+                <span class="relative cursor-pointer hover:text-indigo-600 duration-300 ease-out
+                    after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 
+                    after:bottom-0 after:h-0.5 after:bg-indigo-600 after:w-0
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                    <span class="text-indigo-600">~/</span>home
+                </span>
+                <span class="relative cursor-pointer hover:text-indigo-600 duration-300 ease-out
+                    after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 
+                    after:bottom-0 after:h-0.5 after:bg-indigo-600 after:w-0
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                    <span class="text-indigo-600">~/</span>o_mnie
+                </span>
+                <span class="relative cursor-pointer hover:text-indigo-600 duration-300 ease-out
+                    after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 
+                    after:bottom-0 after:h-0.5 after:bg-indigo-600 after:w-0
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                    <span class="text-indigo-600">~/</span>kontakt
+                </span>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main class="grow">
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-300 py-6 roboto-mono text-sm">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+
+            <p class="mb-2 md:mb-0">
+                &copy; <span id="current-year"></span> osiedlowyinformatyk.pl
+            </p>
+
+            <div class="flex gap-4 text-gray-400 ">
+                <a href="#" class="cursor-pointer hover:text-indigo-600 duration-300 ease-out">github</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+
+</body>
+
+</html>
