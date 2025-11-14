@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +12,11 @@
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/6bf562f034.js" crossorigin="anonymous"></script>
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
     <title>{% block title %} osiedlowy_informatyk@blog:~$ {% endblock %}</title>
 </head>
 
@@ -19,7 +24,8 @@
 
     <header class="sticky top-0 select-none">
 
-        <nav class="flex flex-col justify-center bg-white dark:bg-gray-900 shadow-xs items-center h-28 gap-3 border-b border-gray-100 dark:border-gray-800">
+        <nav
+            class="flex flex-col justify-center bg-white dark:bg-gray-900 shadow-xs items-center h-28 gap-3 border-b border-gray-100 dark:border-gray-800">
 
             <div class="text-lg md:text-2xl font-extrabold ">
                 <span class="text-indigo-600 dark:text-indigo-500">
@@ -49,6 +55,7 @@
                     hover:after:w-full">
                     <span class="text-indigo-600 dark:text-indigo-500">~/</span>kontakt
                 </span>
+
             </div>
 
         </nav>
@@ -56,6 +63,35 @@
     </header>
 
     <main class="grow">
+
+        <div class="fixed bottom-4 md:top-4 right-4 z-50">
+
+            <button id="darkSlider" aria-pressed="false" aria-label="Przełącz tryb jasny/ciemny"
+                class="relative w-20 h-10 rounded-full bg-gray-200 dark:bg-gray-700 shadow-inner transition-colors duration-300">
+
+                <span
+                    class="pointer-events-none absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm opacity-90">
+                    <i class="fa-solid fa-sun"></i>
+                </span>
+
+                <span
+                    class="pointer-events-none absolute right-3 top-1/2 transform -translate-y-1/2 text-indigo-300 text-sm opacity-90">
+                    <i class="fa-solid fa-moon"></i>
+                </span>
+
+                <div id="thumb"
+                    class="absolute left-1 top-1 w-8 h-8 rounded-full bg-white dark:bg-gray-900 shadow transform transition-all duration-300 will-change-transform dark:translate-x-10 flex items-center justify-center overflow-hidden">
+
+                    <i
+                        class="thumb-sun fa-solid fa-sun text-gray-500 text-base absolute transition-all duration-300 opacity-100 rotate-0 dark:opacity-0 dark:-rotate-45"></i>
+                    <i
+                        class="thumb-moon fa-solid fa-moon text-indigo-300 text-base absolute transition-all duration-300 opacity-0 rotate-45 dark:opacity-100 dark:rotate-0"></i>
+
+                </div>
+
+            </button>
+
+        </div>
 
         <div class="flex flex-col mt-2 md:mt-8 max-w-3xl mx-auto p-4 md:p-0 mb-6">
 
@@ -68,21 +104,45 @@
     </main>
 
     <footer class="bg-gray-800 text-gray-300 py-6 text-sm">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 max-w-3xl">
+
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 max-w-3xl gap-6">
 
             <p class="mb-2 md:mb-0">
                 &copy; <span id="current-year"></span> osiedlowyinformatyk.pl
             </p>
 
             <div class="flex gap-4 text-gray-400 ">
-                <a href="https://github.com/alanmyszka/blog-osiedlowyinformatyk" class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-500 duration-300 ease-out"><i class="fa-brands fa-github"></i> github</a>
+
+                <a href="https://github.com/alanmyszka/blog-osiedlowyinformatyk"
+                    class="cursor-pointer hover:text-indigo-600 dark:hover:text-indigo-500 duration-300 ease-out">
+                    <i class="fa-brands fa-github"></i> github
+                </a>
+
             </div>
 
         </div>
+
     </footer>
 
     <script>
         document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
+
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark')
+        }
+    </script>
+
+    <script>
+        const html = document.documentElement;
+        const btn = document.getElementById('darkSlider');
+        const thumb = document.getElementById('thumb');
+
+        btn.addEventListener('click', () => {
+            const isDark = html.classList.toggle('dark');
+            localStorage.theme = isDark ? 'dark' : 'light';
+        });
     </script>
 
 </body>
