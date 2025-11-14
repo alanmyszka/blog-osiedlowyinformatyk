@@ -5,11 +5,11 @@
 {% for post in posts %}
 
 <div class="flex flex-col">
-    <span class="font-bold text-gray-700 text-base">
-        {{ post.title }}
+    <span class="font-bold text-gray-700 text-lg">
+        <a href="/post/{{ post.slug }}" class="hover:text-indigo-600 duration-300 ease-out">{{ post.title }}</a>
     </span>
 
-    <span class="text-gray-500 text-sm mt-1">
+    <span class="text-gray-500 text-sm mt-2">
         <i class="fa-regular fa-calendar text-indigo-600"></i> {{ post.created|date:"d.m.Y H:i" }}
     </span>
 
