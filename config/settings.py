@@ -22,16 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("DJANGO_SECRET_KEY")
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 if not SECRET_KEY:
-    raise ImproperlyConfigured("SECRET_KEY must be set in .env")
+    raise ImproperlyConfigured('SECRET_KEY must be set in .env')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default='', cast=lambda v: [s.strip() for s in v.split(',') if s])
 if not ALLOWED_HOSTS:
-    raise ImproperlyConfigured("ALLOWED_HOSTS must be set in .env")
+    raise ImproperlyConfigured('ALLOWED_HOSTS must be set in .env')
 
 
 # Application definition
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -127,4 +128,26 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 STATICFILES_DIRS = [ BASE_DIR / 'static' ]
+
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'menubar': True,
+    'plugins': 'advlist autolink lists link image charmap print preview anchor '
+               'searchreplace visualblocks code fullscreen insertdatetime '
+               'media table paste code help wordcount codesample',
+    'toolbar': (
+        'undo redo | formatselect | bold italic underline | '
+        'alignleft aligncenter alignright alignjustify | '
+        'bullist numlist outdent indent | table | image media link | '
+        'code codesample'
+    ),
+    'automatic_uploads': True,
+    'images_upload_url': '/upload-image/',
+    'file_picker_types': 'image',
+}
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'media'

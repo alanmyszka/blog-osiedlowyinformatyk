@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="flex flex-col border border-gray-100 shadow-xs rounded-2xl p-0 md:p-6 bg-white">
+<div class="flex flex-col border border-gray-100 shadow-xs rounded-2xl p-4 md:p-6 bg-white">
     <span class="font-bold text-gray-700 text-lg">
         {{ post.title }}
     </span>
@@ -11,8 +11,8 @@
         <i class="fa-regular fa-calendar text-indigo-600"></i> {{ post.created|date:"d.m.Y H:i" }}
     </span>
 
-    <div class="prose mt-4 max-w-max text-sm">
-        {{ post.content }}
+    <div class="mt-4 text-sm text-gray-700 prose prose-lg max-w-full">
+        {{ post.content|safe }}
     </div>
 
     {% if post.tags.all %}
