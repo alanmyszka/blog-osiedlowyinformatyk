@@ -4,20 +4,20 @@
 
 {% for post in posts %}
 
-<div class="flex flex-col border border-gray-100 md:shadow-xs rounded-2xl p-4 md:p-6 bg-white">
-    <span class="font-bold text-gray-700 text-lg">
+<div class="flex flex-col border border-gray-100 md:shadow-xs rounded-2xl p-4 md:p-6 bg-white dark:bg-gray-800 dark:border-gray-700">
+    <span class="font-bold text-gray-700 dark:text-neutral-200 text-lg">
         <a href="/post/{{ post.slug }}" class="hover:text-indigo-600 duration-300 ease-out">{{ post.title }}</a>
     </span>
 
-    <span class="text-gray-500 text-sm mt-2">
+    <span class="text-gray-500 dark:text-neutral-100 text-sm mt-2">
         <i class="fa-regular fa-calendar text-indigo-600"></i> {{ post.created|date:"d.m.Y H:i" }}
     </span>
 
-    <span class="text-gray-600 text-sm mt-4">
+    <span class="text-gray-600 text-sm mt-4 dark:text-neutral-200">
         {{ post.excerpt }}
     </span>
 
-    <span class="text-indigo-600 text-sm mt-2">
+    <span class="text-indigo-600 dark:text-indigo-500 text-sm mt-2">
         <a href="/post/{{ post.slug }}">
             Czytaj dalej <i class="fa-solid fa-angles-right"></i>
         </a>
@@ -25,14 +25,14 @@
 
     {% if post.tags.all %}
 
-    <div class="text-sm mt-4 text-gray-700">
+    <div class="text-sm mt-4 text-gray-700 dark:text-neutral-100">
 
         <span>Tagi:</span>
 
         <span class="inline-flex gap-6">
 
             {% for tag in post.tags.all %}
-            <a href="/tag/{{ tag.slug }}" class="text-indigo-600 text-sm">
+            <a href="/tag/{{ tag.slug }}" class="text-indigo-600 dark:text-indigo-500 text-sm">
                 {{ tag.name }}
             </a>
             {% endfor %}
