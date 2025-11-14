@@ -146,8 +146,15 @@ TINYMCE_DEFAULT_CONFIG = {
     'automatic_uploads': True,
     'images_upload_url': '/upload-image/',
     'file_picker_types': 'image',
+    'images_upload_credentials': True,
 }
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
+
+SECURE_BROWSER_XSS_FILTER = True
+
+X_FRAME_OPTIONS = 'DENY'
+
+SECURE_CONTENT_TYPE_NOSNIFF = True

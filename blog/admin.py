@@ -7,6 +7,9 @@ class PostAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.TextField: {'widget': TinyMCE()},
     }
+    
+    class Media:
+        js = ('admin/js/tinymce_csrf.js',)
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(Tag)
