@@ -20,6 +20,7 @@ from decouple import config
 from blog.views import posts, post_content, upload_image
 from django.conf.urls.static import static
 from django.conf import settings
+from .views import about, contact
 
 ADMIN_URL = config("DJANGO_ADMIN_URL", default="admin/")
 
@@ -36,3 +37,8 @@ urlpatterns += [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+urlpatterns += [
+    path("contact/", contact, name="contact"),
+    path("about/", about, name="about"),
+]
